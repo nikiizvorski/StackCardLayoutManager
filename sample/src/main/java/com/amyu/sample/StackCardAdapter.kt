@@ -23,10 +23,12 @@ class StackCardAdapter(context: Context) : ListAdapter<CardViewModel, CardViewHo
 
     var onItemClickListener: ((cardView: CardView, cardViewModel: CardViewModel) -> Unit)? = null
 
+    var onItemLongClickListener: ((cardView: CardView, cardViewModel: CardViewModel) -> Unit)? = null
+
     override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int
     ): CardViewHolder = CardViewHolder.create(inflater, parent, false)
 
-    override fun onBindViewHolder(holder: CardViewHolder, position: Int) = holder.bind(getItem(position), onItemClickListener)
+    override fun onBindViewHolder(holder: CardViewHolder, position: Int) = holder.bind(getItem(position), onItemClickListener, onItemLongClickListener)
 }

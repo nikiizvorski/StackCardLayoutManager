@@ -17,12 +17,18 @@ class CardViewHolder private constructor(val binding: ItemCardBinding) : Recycle
     }
 
     fun bind(
-            cardViewModel: CardViewModel,
-            onItemClickListener: ((cardView: CardView, cardViewModel: CardViewModel) -> Unit)?
+        cardViewModel: CardViewModel,
+        onItemClickListener: ((cardView: CardView, cardViewModel: CardViewModel) -> Unit)?,
+        onItemLongClickListener: ((cardView: CardView, cardViewModel: CardViewModel) -> Unit)?
     ) {
         binding.viewModel = cardViewModel
         binding.cardView.setOnClickListener {
             onItemClickListener?.invoke(binding.cardView, cardViewModel)
+        }
+
+        binding.cardView.setOnLongClickListener {
+            onItemLongClickListener?.invoke(binding.cardView, cardViewModel)
+            true
         }
     }
 }
